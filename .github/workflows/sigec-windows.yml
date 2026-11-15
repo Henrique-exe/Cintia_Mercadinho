@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths: ['SIGEC_MVP/**', '.github/workflows/sigec-windows.yml']
   push:
-    branches: [main]
+    branches: [main, 'build/**']
     paths: ['SIGEC_MVP/**', '.github/workflows/sigec-windows.yml']
 
 permissions:
