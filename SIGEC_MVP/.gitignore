@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.DS_Store
+data/*
+!data/.gitkeep
+*.db
+*.sqlite3
+backups/
+logs/
+runtime/
+build/
+dist/
+release/
