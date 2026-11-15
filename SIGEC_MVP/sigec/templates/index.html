@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102f28">
+  <title>SIGEC • Sistema Cíntia Mercadinho</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <div class="brand-mark">S<span>●</span></div>
+        <div><strong>SIGEC</strong><small>Sistema Cíntia Mercadinho</small></div>
+      </div>
+      <div class="aside-heading">PAINEL DE CONTROLE</div>
+      <nav id="navigation">
+        <button data-tab="dashboard" class="nav-item active"><span class="nav-icon">▦</span> Visão geral</button>
+        <button data-tab="sales" class="nav-item"><span class="nav-icon">▣</span> Vendas / PDV</button>
+        <button data-tab="products" class="nav-item"><span class="nav-icon">▤</span> Produtos e estoque</button>
+        <button data-tab="shopping" class="nav-item"><span class="nav-icon">☷</span> Lista de compras</button>
+        <button data-tab="credit" class="nav-item"><span class="nav-icon">◫</span> Caderneta</button>
+        <button data-tab="cash" class="nav-item"><span class="nav-icon">◈</span> Caixa</button>
+        <button data-tab="reports" class="nav-item"><span class="nav-icon">▥</span> Relatórios</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="connection"><i></i> Operação 100% local</div><div class="mini-label">Dados protegidos no SQLite</div></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="top-left"><span class="mobile-brand">SIGEC</span><span id="breadcrumbs">Painel / Visão geral</span></div>
+        <div class="top-right"><span class="local-clock" id="todayLabel"></span><span class="cash-pill" id="cashPill">Carregando caixa...</span></div>
+      </header>
+      <main class="main" id="main" aria-live="polite"><div class="loading">Carregando SIGEC...</div></main>
+    </div>
+  </div>
+  <div id="modalRoot"></div>
+  <div id="toastRoot" role="status" aria-live="polite"></div>
+</body>
+</html>

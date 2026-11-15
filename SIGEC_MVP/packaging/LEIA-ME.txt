@@ -1,0 +1,28 @@
+SIGEC — Mercadinho da Cíntia
+
+Este instalador é destinado à validação em Windows 10/11 x64.
+A versão e a arquitetura do PC da cliente ainda precisam ser confirmadas.
+
+Instalação por usuário. Não requer Python, internet nem acesso de administrador.
+Depois de concluir e fechar o instalador, abra SIGEC na área de trabalho.
+O sistema roda somente neste computador, no navegador padrão.
+Fechar a aba não encerra o servidor. Use Iniciar > SIGEC > Encerrar SIGEC.
+Não feche nem reinicie o PC durante uma venda.
+
+O banco fica em %LOCALAPPDATA%\SIGEC\data\sigec.sqlite3.
+Os backups ficam em %LOCALAPPDATA%\SIGEC\backups.
+Para fazer uma cópia consistente: Iniciar > SIGEC > Fazer backup do SIGEC.
+Copie os backups para outro dispositivo e teste a restauração com a equipe.
+Log de erros: %LOCALAPPDATA%\SIGEC\logs\sigec.log.
+
+Reexecutar o mesmo instalador confere os arquivos pelo SHA-256 e repara os que
+estiverem faltando ou alterados; também recria o atalho. Dados e backups são
+preservados na atualização, reparo, desinstalação e reinstalação.
+
+Se for reaproveitar o banco antigo, NÃO abra o SIGEC novo ainda. Peça à equipe
+para seguir docs/MIGRACAO_E_DADOS.md antes da primeira abertura.
+Nenhum banco de demonstração é instalado automaticamente.
+
+Durante uma atualização, conclua as operações e autorize o encerramento.
+Se não puder encerrar com segurança, o instalador cancela a manutenção.
+A equipe ainda deve validar este pacote com dados fictícios antes do uso real.

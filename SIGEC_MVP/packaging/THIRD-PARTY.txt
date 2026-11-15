@@ -1,0 +1,16 @@
+SIGEC — componentes de terceiros
+
+O pacote inclui um runtime CPython próprio, sem modificar o Python do computador.
+As licenças originais das dependências ficam nos diretórios *.dist-info do runtime;
+a licença do Python fica em licenses/python/LICENSE.txt.
+
+CPython (inclui módulo sqlite3 e biblioteca SQLite): https://www.python.org/psf/license/
+SQLite: domínio público, https://sqlite.org/copyright.html
+Flask, Werkzeug, Jinja2, MarkupSafe, itsdangerous, click: https://palletsprojects.com/
+Blinker: https://github.com/pallets-eco/blinker
+Waitress: https://github.com/Pylons/waitress
+Colorama: https://github.com/tartley/colorama
+PyInstaller / bootloader: https://pyinstaller.org/en/v6.16.0/license.html
+
+Versões exatas: packaging/requirements-windows.lock e release/dependencies.txt.
+O instalador é compilado com Inno Setup: https://jrsoftware.org/isinfo.php

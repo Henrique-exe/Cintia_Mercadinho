@@ -1,0 +1,35 @@
+/* Node.js regression smoke-test: no network or browser required. */
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+const src=fs.readFileSync(path.join(__dirname,'../sigec/static/app.js'),'utf8').replace(/\nload\(\);\s*$/,'\n');
+const document={addEventListener(){},querySelector(){return null},querySelectorAll(){return []}};
+const ctx=vm.createContext({document,console,Date,Number,String,Math,Intl,setTimeout,globalThis:{}});
+vm.runInContext(src,ctx);
+vm.runInContext(`
+state.data.cash={status:'OPEN'};
+state.data.products=[{id:1,price_cents:1900,stock_base:4,unit:'UN',name:'Arroz',active:true}];
+state.cart=[{product_id:1,quantity:'1'}];
+state.discountPct='10'; state.discountFixed='0';
+state.payments=[{method:'CASH',applied:'5.00',tendered:'5.00'}];
+`,ctx);
+let blockers=vm.runInContext('saleBlockers(cartTotals())',ctx);
+assert.equal(blockers.length,1);
+assert.match(blockers[0],/Faltam.*12,10/);
+vm.runInContext(`state.payments.push({method:'PIX',applied:'12.10'})`,ctx);
+blockers=vm.runInContext('saleBlockers(cartTotals())',ctx);
+assert.equal(blockers.length,0);
+vm.runInContext(`state.cart.push({product_id:1,quantity:'1'})`,ctx);
+blockers=vm.runInContext('saleBlockers(cartTotals())',ctx);
+assert.equal(blockers.length,1);
+assert.match(blockers[0],/Faltam.*17,10/);
+vm.runInContext(`state.discountPct='110'`,ctx);
+blockers=vm.runInContext('saleBlockers(cartTotals())',ctx);
+assert.match(blockers.join(' '),/percentual entre 0% e 100%/);
+const page=vm.runInContext('reports()',ctx);
+assert.match(page,/Recebimentos por forma de pagamento/);
+assert.match(page,/Lucro bruto estimado/);
+const sales=vm.runInContext('sales()',ctx);
+assert.match(sales,/O que falta para concluir/);
+console.log('Interface JS: cálculos, motivos de bloqueio e relatório OK');
